@@ -1,0 +1,350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 84 24% 96%;
+    --foreground: 0 0% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 84 24% 96%;
+    --secondary-foreground: 0 0% 8%;
+
+    --muted: 84 24% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --font-serif: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    
+    --gradient-hero: linear-gradient(180deg, hsl(220 14% 98%) 0%, hsl(0 0% 100%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 14% 98%) 100%);
+    
+    --shadow-card: 0 4px 24px -4px hsl(0 0% 0% / 0.08);
+    --shadow-card-hover: 0 8px 32px -4px hsl(0 0% 0% / 0.12);
+    --shadow-button: 0 2px 8px -2px hsl(0 0% 0% / 0.15);
+
+    --plaid-blue: 217 91% 60%;
+    --openai-dark: 0 0% 15%;
+    --stripe-purple: 262 83% 58%;
+  }
+
+  .dark {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .appear-card {
+    animation: card-appear 1.125s ease-out forwards;
+  }
+
+  .perspective-1200 {
+    perspective: 1200px;
+  }
+
+  .marquee-track {
+    animation: marquee-slide linear infinite;
+  }
+}
+
+@keyframes marquee-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes card-appear {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating animation for partner logos */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-12px) translateX(4px);
+  }
+  66% {
+    transform: translateY(-6px) translateX(-4px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+  animation: float 4.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-float-delay-2 {
+  animation: float 3.8s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-float-delay-3 {
+  animation: float 4.2s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+/* Stagger animation utilities for cards and elements */
+.animate-stagger-1 {
+  animation-delay: 0.05s;
+}
+
+.animate-stagger-2 {
+  animation-delay: 0.1s;
+}
+
+.animate-stagger-3 {
+  animation-delay: 0.15s;
+}
+
+.animate-stagger-4 {
+  animation-delay: 0.2s;
+}
+
+.animate-stagger-5 {
+  animation-delay: 0.25s;
+}
+
+/* Smooth entrance animations with stagger */
+@keyframes fade-in-up-stagger {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in-center {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes blur-in {
+  0% {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apple-style smooth hover transitions */
+.motion-safe-transition {
+  @apply transition-all duration-300 ease-out;
+}
+
+.motion-safe-duration-longer {
+  @apply duration-500;
+}
+
+/* Cards entrance animations */
+.animate-card-entrance {
+  animation: fade-in-up-stagger 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-card-entrance-slow {
+  animation: fade-in-up-stagger 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Heading animations */
+.animate-heading-in {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Description text animations */
+.animate-text-in {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.1s;
+}
+
+/* Button animations */
+.animate-button-in {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+/* Apple-style smooth scale on hover */
+.hover-scale-105 {
+  @apply transition-transform duration-300 ease-out hover:scale-105;
+}
+
+.hover-scale-102 {
+  @apply transition-transform duration-300 ease-out hover:scale-102;
+}
+
+/* Elegant shadow transitions */
+.hover-shadow-lg {
+  @apply transition-shadow duration-300 hover:shadow-lg;
+}
+
+/* Opacity transitions for smooth fades */
+.hover-opacity-80 {
+  @apply transition-opacity duration-300 hover:opacity-80;
+}
+
+/* Glass morphism effect with animations */
+.glass-effect {
+  @apply backdrop-blur-md bg-white/80 dark:bg-black/80;
+}
+
+/* Smooth scroll behavior */
+html {
+  @apply scroll-smooth;
+}
+
+/* Elegant focus states */
+:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+  @apply transition-all duration-200;
+}
